@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact V12</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="js/TopicPublisher.js"></script>
+	<script src="js/lib/solclient-debug.js"></script>
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<script>
+		var publisher = null;
+		window.onload = function () {
+		  // Initialize factory with the most recent API defaults
+		  var factoryProps = new solace.SolclientFactoryProperties();
+		  factoryProps.profile = solace.SolclientFactoryProfiles.version10;
+		  solace.SolclientFactory.init(factoryProps);
+  
+		  // enable logging to JavaScript console at WARN level
+		  // NOTICE: works only with "solclientjs-debug.js"
+		  solace.SolclientFactory.setLogLevel(solace.LogLevel.WARN);
+  
+		  // create the publisher, specifying name of the subscription topic
+		  publisher = new TopicPublisher('test/dev');
+		  // assign buttons to the publisher functions
+		  $("#publish").click(function() {
+			  console.debug("Caught send button event");
+				publisher.publish()
+				// publisher.publishimage()
+			  publisher.disconnect()
+			  location.href = 'landing.html';
+		  });
+		};
+		function iframeloaded(){
+        if (publisher) {
+		  publisher.connectToSolace();
+        }
+      };
+	  </script>
+<body>
+
+	<div class="bg-contact100">
+		<div class="container-contact100">
+			<div class="wrap-contact100">
+				<div class="contact100-pic js-tilt" data-tilt>
+					<img src="images/Solace_Logo_Green_360x100.png" alt="IMG">
+					<h1>Publish Demo</h1>
+				</div>
+	
+				<form class="contact100-form validate-form">
+					<span class="contact100-form-title">
+						Register
+					</span>
+	
+					<div class="wrap-input100 validate-input" data-validate="Name is required">
+						<input class="input100" type="text" id="name" name="name" placeholder="Name">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+	
+					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" id="email" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Message is required">
+						<textarea class="input100" id="message" name="message" placeholder="Message"></textarea>
+						<span class="focus-input100"></span>
+					</div>
+					<!-- <div>
+						<input type="file" name="pic" accept="image/*">
+					</div> -->
+					<p>
+						<button type="button" class="contact100-form-btn" id="publish">
+							Send
+						</button>
+					</p>
+
+					<textarea id="log" rows="20" cols="90" autofocus></textarea>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+
+</body>
+</html>
