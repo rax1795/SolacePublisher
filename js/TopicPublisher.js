@@ -53,16 +53,16 @@ var TopicPublisher = function (topicName) {
             publisher.log('Already connected and ready to publish messages.');
             return;
         }
-        var hosturl = "ws://mr8ksiwsp23vv.messaging.solace.cloud:20451";
+        var hosturl = ""; //insert hosturl
         // // check for valid protocols
         // if (hosturl.lastIndexOf('ws://', 0) !== 0 && hosturl.lastIndexOf('wss://', 0) !== 0 &&
         //     hosturl.lastIndexOf('http://', 0) !== 0 && hosturl.lastIndexOf('https://', 0) !== 0) {
         //     publisher.log('Invalid protocol - please use one of ws://, wss://, http://, https://');
         //     return;
         // }
-        var username = "solace-cloud-client";
-        var pass = "croo89sd2pkbmk49a325m21q1v";
-        var vpn = "msgvpn-jfgwkeg1ahl";
+        var username = ""; //insert username
+        var pass = ""; //insert password
+        var vpn = ""; //insert vpn
         // if (!hosturl || !username || !pass || !vpn) {
         //     publisher.log('Cannot connect: please specify all the Solace message router properties.');
         //     return;
